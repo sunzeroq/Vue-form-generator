@@ -85,7 +85,7 @@
                             </div>
                             <Button @click="add(index, 'SingleSelect')">Add</Button>
                         </div>
-                        <div v-if="formConfig[index].key ==='DataPickerCom'">
+                        <div v-if="formConfig[index].key ==='DatePickerCom'">
                             <label>
                                 标签
                                 <Input v-model="formConfig[index].config.label" ></Input>
@@ -116,30 +116,30 @@
                             </div>
                             <Button @click="add(index, 'LabelText')">Add</Button>
                         </div>
-                        <div v-if="formConfig[index].key ==='TextMixInput'">
-                            <div
-                                v-for="(item, i) in formConfig[index].config.text"
-                            >
-                                <label>
-                                    前缀
-                                    <Input v-model="item.preLabel"></Input>
-                                </label>
-                                <label>
-                                    后缀
-                                    <Input v-model="item.afterLabel"></Input>
-                                </label>
-                                <label>
-                                    Key
-                                    <Input v-model="item.key"></Input>
-                                </label>
-                                <label>
-                                    是否可编辑
-                                    <checkbox v-model="item.disable"></checkbox>
-                                </label>
-                                <Button @click="remove(index, i, 'TextMixInput')" type="error">删除</Button>
-                            </div>
-                            <Button @click="add(index, 'TextMixInput')">新增</Button>
-                        </div>
+<!--                        <div v-if="formConfig[index].key ==='TextMixInput'">-->
+<!--                            <div-->
+<!--                                v-for="(item, i) in formConfig[index].config.text"-->
+<!--                            >-->
+<!--                                <label>-->
+<!--                                    前缀-->
+<!--                                    <Input v-model="item.preLabel"></Input>-->
+<!--                                </label>-->
+<!--                                <label>-->
+<!--                                    后缀-->
+<!--                                    <Input v-model="item.afterLabel"></Input>-->
+<!--                                </label>-->
+<!--                                <label>-->
+<!--                                    Key-->
+<!--                                    <Input v-model="item.key"></Input>-->
+<!--                                </label>-->
+<!--                                <label>-->
+<!--                                    是否可编辑-->
+<!--                                    <checkbox v-model="item.disable"></checkbox>-->
+<!--                                </label>-->
+<!--                                <Button @click="remove(index, i, 'TextMixInput')" type="error">删除</Button>-->
+<!--                            </div>-->
+<!--                            <Button @click="add(index, 'TextMixInput')">新增</Button>-->
+<!--                        </div>-->
                         <div v-if="formConfig[index].key === 'CascaderSelect'">
                             <label>
                                 标签
@@ -178,21 +178,21 @@
 <script>
 import draggable from "vuedraggable";
 import FlowForm from "@/components/FlowForm";
-import {InputComponent} from "@/components"
+import {LabelText, InputComponent, SingleSelect, TableComponent, CascaderSelect, DatePickerCom} from "@/components"
 // import { RowTimeLine, NumberTitle, CascaderSelect, SingleSelect, InputComponent, TextMixInput, TableComponent, OpinionComponent,  LabelText, DataPickerCom, UploadPage } from '@/components'
 export default {
     components: {
         FlowForm, draggable,
         // RowTimeLine,
         // NumberTitle,
-        // CascaderSelect,
-        // SingleSelect,
+        CascaderSelect,
+        SingleSelect,
         InputComponent,
         // TextMixInput,
-        // TableComponent,
+        TableComponent,
         // OpinionComponent,
-        // LabelText,
-        // DataPickerCom,
+        LabelText,
+        DatePickerCom,
         // UploadPage
     },
     data: function() {
@@ -241,7 +241,7 @@ export default {
                 },
                 {
                     name: '日期选择',
-                    key: 'DataPickerCom',
+                    key: 'DatePickerCom',
                     width: 'span 2',
                     step: 0,
                     disable: false,
@@ -293,22 +293,22 @@ export default {
                         regulation: ['prjCost', 'averageCost', 'totalConsArea']
                     }
                 },
-                {
-                    name: '文本输入',
-                    key: 'TextMixInput',
-                    width: 'span 4',
-                    step: 0,
-                    config: {
-                        text: [
-                            {
-                                preLabel: '(受理编号为：',
-                                afterLabel: '）',
-                                key: 'acceptNumber',
-                                disable: false
-                            }
-                        ]
-                    }
-                },
+                // {
+                //     name: '文本输入',
+                //     key: 'TextMixInput',
+                //     width: 'span 4',
+                //     step: 0,
+                //     config: {
+                //         text: [
+                //             {
+                //                 preLabel: '(受理编号为：',
+                //                 afterLabel: '）',
+                //                 key: 'acceptNumber',
+                //                 disable: false
+                //             }
+                //         ]
+                //     }
+                // },
                 {
                     name: '级联选择',
                     key: 'CascaderSelect',
@@ -327,7 +327,17 @@ export default {
                                         value: 'XXGHBPAX'
                                     }
                                 ]
-                            }
+                            },
+                            {
+                                label: '测试相关',
+                                value: 'B',
+                                children: [
+                                    {
+                                        label: 'test（AX）',
+                                        value: 'test'
+                                    }
+                                ]
+                            },
                         ]
                     }
                 }
